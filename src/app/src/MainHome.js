@@ -13,7 +13,6 @@ function MainHome() {
   const [addressList, setAddressList] = useState([]);
 
   const handleSubmit = (event) => {
-    console.log('in handle submit')
     event.preventDefault();
 
     if (!address) {
