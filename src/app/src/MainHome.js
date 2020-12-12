@@ -86,7 +86,6 @@ class MainHome extends React.Component{
                         value={this.state.address}
                         onChange={this.handleChange}
                         onSelect={this.handleSelect}
-
                         className='autocomplete'
                     >
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
