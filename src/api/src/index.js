@@ -49,8 +49,8 @@ app.post('/api/locations', async (req, res) => {
     restaurantData = restaurants.data.results.slice();
     radius += 200;
   }
-
-  res.send(restaurantData);
+  
+  res.send(restaurantData.slice(0,15));
 });
 
 console.log(`API server started on: ${port}`);
