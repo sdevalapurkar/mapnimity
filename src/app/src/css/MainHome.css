@@ -1,0 +1,114 @@
+userMessage {
+    padding-top: 10px;
+    padding-left: 10px;
+    size: 0px;
+}
+
+.letsMeetDiv{
+    max-height: 20%;
+}
+
+#MainHomeContainer{
+    margin-left: 50%;
+    text-align: center;
+    margin-right: 4%;
+    width: 50%;
+    height: 100%;
+    border-left: grey 1px solid;
+}
+
+.letsMeetButton{
+    margin-top: 50%;
+    margin-bottom: 5%;
+    width: 70%;
+}
+
+/* .titleBar {
+    text-align: right;
+    padding: 5%;
+}  */
+
+h2 {
+    padding-top: 2%;
+    size: 12px;
+    color: #8133FF;
+}
+
+.searchInput {
+    padding: 2%;
+    width : 50%;
+    height: 3%;
+    float: left;
+    margin-left: 20%;
+}
+
+#addressList{
+    padding: 2%;
+    text-align: center;
+    margin-top: 4%;
+}
+
+.searchBar{
+    text-align: center;
+    margin-left: 7%;
+    padding-bottom: 3%;
+}
+
+.homeSearchButton {
+    float: left;
+    padding-top: 1.5%;
+}
+
+.deleteAddress {
+    float: left;
+    padding: 1%;
+}
+
+.suggestions {
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.suggestion {
+    border-bottom: solid 1px;
+}
+
+.suggestion:hover{
+    background-color: gainsboro;
+}
+
+.addressPoint {
+    border-radius: 10px;
+    height: 3%;
+    padding: 2%;
+    margin-left: 30%;
+    margin-right: 2%;
+    text-align: center;
+    background-color: #FB6A59;
+    float: left;
+}
+
+.addressLink:hover{
+    color: white;
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+.addressLink{
+    padding: 4%;
+    size: 30px;
+    color: white;
+    border-radius: 10px;
+    background-color: #FB6A59;
+}
+
+.displayMessage{
+    text-align: center;
+    color: red;
+    size: 16px;
+}
+
+.walkthroughLink{
+    size: 20px;
+    margin-top: 2%;
+}
