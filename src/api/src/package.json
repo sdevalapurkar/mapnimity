@@ -1,15 +1,19 @@
 {
-  "name": "application-server",
+  "name": "api",
   "version": "1.0.0",
-  "description": "",
+  "description": "backend api for application",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "node"
+  ],
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
   "dependencies": {
     "express": "^4.17.1"
   }
