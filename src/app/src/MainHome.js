@@ -36,7 +36,7 @@ class MainHome extends React.Component{
         event.preventDefault();
 
         if(address){
-            if(!this.state.addressList.includes(this.state.address)){
+            if(!addressList.includes(address)){
                 let currAddList = this.state.addressList;
                 currAddList.push(this.state.address);
 
