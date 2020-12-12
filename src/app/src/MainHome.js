@@ -41,9 +41,9 @@ class MainHome extends React.Component{
                 currAddList.push(address);
 
                 this.setState({ addressList: currAddList }, () => {
-                this.setState({ address : "" });
-                this.handleTextFieldChange("");
-            });
+                    this.setState({ address : "" });
+                    this.handleTextFieldChange("");
+                });
             } else {
                 this.setState({ message: "Address already added", address : "" });
                 this.handleTextFieldChange("");
