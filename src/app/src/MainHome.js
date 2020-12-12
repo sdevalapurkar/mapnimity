@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from 'axios';
 // using this npm module for displaying results from Google Places API in dropdown
 import PlacesAutocomplete from 'react-places-autocomplete'
 
@@ -66,18 +66,10 @@ class MainHome extends React.Component{
 
         let fetchURL = process.env.REACT_APP_PORT+'/api/locations';
 
-        console.log(this.state.addressList);
+        // console.log(this.state.addressList);
 
         try{
-            let response = await fetch(fetchURL, {
-                method: 'POST',
-                mode: 'cors',
-                body: JSON.stringify({"locations" : this.state.addressList}),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept-Type': 'application/json'
-                }
-            });
+            let response = await axios.post(fetchURL, {"locations" : this.state.addressList});
 
             if(response.status === 200){
                 console.log("Success");   
