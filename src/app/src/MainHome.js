@@ -44,7 +44,7 @@ class MainHome extends React.Component{
                 this.setState({ address : "" });
                 this.handleTextFieldChange("");
             });
-            }else{
+            } else {
                 this.setState({message : "Address already added", address : ""});
                 this.handleTextFieldChange("");
             } 
