@@ -32,6 +32,7 @@ class MainHome extends React.Component{
     }
 
     handleSubmit = (event) => {
+        const { address, addressList } = this.state;
         event.preventDefault();
 
         if(address){
