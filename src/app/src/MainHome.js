@@ -34,7 +34,7 @@ class MainHome extends React.Component{
     handleSubmit = (event) => {
         event.preventDefault();
 
-        if(this.state.address !== ""){
+        if(address){
             if(!this.state.addressList.includes(this.state.address)){
                 let currAddList = this.state.addressList;
                 currAddList.push(this.state.address);
