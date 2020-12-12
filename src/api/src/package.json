@@ -4,7 +4,8 @@
   "description": "backend api for application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:reload": "./node_modules/.bin/nodemon src/index.js"
   },
   "keywords": [
     "node"
@@ -15,6 +16,8 @@
     "nodemon": "^2.0.6"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "axios": "^0.21.0",
+    "express": "^4.17.1",
+    "geolib": "^3.3.1"
   }
 }
