@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const { getMidpoint } = require('./utils/calculateMidpoint');
 
+require('dotenv').config();
 const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
 const geoCodeApiBaseUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
 
