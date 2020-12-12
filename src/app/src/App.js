@@ -3,7 +3,6 @@ import React from 'react';
 import MainHome from './MainHome';
 
 class App extends React.Component{
-  
   constructor(props){
     super(props);
   }
