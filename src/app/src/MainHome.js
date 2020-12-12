@@ -54,7 +54,7 @@ class MainHome extends React.Component{
     handleAddressDelete = (address) => {
         let currAddList = this.state.addressList;
 
-        let addressDeleteIndex = currAddList.indexOf(address);
+        const addressDeleteIndex = currAddList.indexOf(address);
 
         currAddList.splice(addressDeleteIndex, 1);
 
