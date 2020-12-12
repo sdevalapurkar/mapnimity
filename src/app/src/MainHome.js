@@ -59,7 +59,7 @@ class MainHome extends React.Component{
 
         currAddList.splice(addressDeleteIndex, 1);
 
-        this.setState({addressList : currAddList});
+        this.setState({ addressList: currAddList });
     }
 
     handleAddressLookup = async (event) => {
