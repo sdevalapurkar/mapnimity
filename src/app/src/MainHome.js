@@ -59,8 +59,8 @@ function MainHome() {
           <MapContain />
         </div>
         <div style={{ marginLeft: "20px" }}>
-          <div className="space-top">
-            <h2>Add an address/Look up a User</h2>
+          <div className="space-top centeralign">
+            <h2>Add an Address</h2>
           </div>
           <br/>
           <Grid container>
