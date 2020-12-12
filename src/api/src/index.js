@@ -3,8 +3,9 @@ const axios = require('axios');
 const { getMidpoint } = require('./utils/calculateMidpoint');
 
 require('dotenv').config();
-const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
+const API_KEY = process.env.API_KEY;
 const geoCodeApiBaseUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
+const placesApiBaseUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json';
 
 app = express(),
 port = process.env.PORT || 8000;
@@ -32,14 +33,15 @@ app.post('/api/locations', async (req, res) => {
   const latLngs = [];
 
   await Promise.all(locations.map(async location => {
-    const result = await axios.get(`${geoCodeApiBaseUrl}?address=${location}&key=${GEOCODE_API_KEY}`);
+    const result = await axios.get(`${geoCodeApiBaseUrl}?address=${location}&key=${API_KEY}`);
     const { data: { results } } = result;
 
     latLngs.push(results[0].geometry.location);
   }));
 
   const midpoint = getMidpoint(latLngs);
-  res.send(`midpoint is ${JSON.stringify(midpoint)}`);
+  const restaurants = await axios.get(`${placesApiBaseUrl}?location=${midpoint.latitude},${midpoint.longitude}&radius=1000&type=restaurant&key=${API_KEY}`);
+  res.send(restaurants.data.results);
 });
 
 console.log(`API server started on: ${port}`);
