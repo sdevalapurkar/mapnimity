@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 // using this npm module for displaying results from Google Places API in dropdown
-import PlacesAutocomplete from 'react-places-autocomplete'
+import PlacesAutocomplete from 'react-places-autocomplete';
 
 import './css/MainHome.css'
 
