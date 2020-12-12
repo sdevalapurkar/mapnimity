@@ -11,6 +11,23 @@ require('dotenv').config();
 function MainHome() {
   const [address, setAddress] = useState("");
   const [addressList, setAddressList] = useState([]);
+  const [locations, setLocations] = useState([]);
+
+  const storeLocations = (locationData) => {
+    const locationFormattedData = [];
+
+    locationData.forEach(l => {
+      const objectData = {};
+
+      objectData.position = [l.geometry.location.lat, l.geometry.location.lng];
+      objectData.name = l.name;
+      objectData.isOpen = l.opening_hours.open_now;
+
+      locationFormattedData.push(objectData);
+    });
+
+    setLocations([ ...locations, locationFormattedData ]);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,9 +53,7 @@ function MainHome() {
       const response = await axios.post(fetchURL, { "locations": addressList });
 
       if (response.status === 200) {
-        console.log("Success");
-      } else{
-        console.log("Failure");
+        storeLocations(response.data);
       }
     } catch (err) {
       alert('Error submitting addresses');
@@ -56,7 +71,7 @@ function MainHome() {
       <MenuAppBar />
       <div className="formcontainer-div">
         <div className="sixtywidth">
-          <MapContain />
+          <MapContain locations={locations} />
         </div>
         <div style={{ marginLeft: "20px" }}>
           <div className="space-top centeralign">

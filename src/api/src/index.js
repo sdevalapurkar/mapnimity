@@ -33,13 +33,14 @@ app.post('/api/locations', async (req, res) => {
   const latLngs = [];
 
   await Promise.all(locations.map(async location => {
-    const result = await axios.get(`${geoCodeApiBaseUrl}?address=${location}&key=${API_KEY}`);
+    const result = await axios.get(`${geoCodeApiBaseUrl}?address=${location.description}&key=${API_KEY}`);
     const { data: { results } } = result;
 
     latLngs.push(results[0].geometry.location);
   }));
 
   const midpoint = getMidpoint(latLngs);
+
   let radius = 0;
   let restaurantData = [];
 
