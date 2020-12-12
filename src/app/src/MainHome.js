@@ -64,7 +64,7 @@ class MainHome extends React.Component{
     handleAddressLookup = async (event) => {
         event.preventDefault();
 
-        let fetchURL = process.env.REACT_APP_PORT+'/api/locations';
+        const fetchURL = `${process.env.REACT_APP_PORT}/api/locations`;
 
         try{
             let response = await axios.post(fetchURL, {"locations" : this.state.addressList});
