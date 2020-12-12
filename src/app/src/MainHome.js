@@ -37,6 +37,7 @@ function MainHome() {
 
       if (response.status === 200) {
         console.log("Success");
+        console.log(response.data);
       } else{
         console.log("Failure");
       }
