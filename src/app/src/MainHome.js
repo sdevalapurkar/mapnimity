@@ -66,8 +66,6 @@ class MainHome extends React.Component{
 
         let fetchURL = process.env.REACT_APP_PORT+'/api/locations';
 
-        // console.log(this.state.addressList);
-
         try{
             let response = await axios.post(fetchURL, {"locations" : this.state.addressList});
 
