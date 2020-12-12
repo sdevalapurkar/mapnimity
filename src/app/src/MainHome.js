@@ -13,7 +13,7 @@ class MainHome extends React.Component{
 
         this.state = {
             'address' : "",
-            'message' : "", 
+            'errorMessage' : "", 
             'addressList' : []
         }
     }
