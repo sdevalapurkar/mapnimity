@@ -28,7 +28,7 @@ class MainHome extends React.Component{
     }
 
     handleTextFieldChange = address => {
-        document.getElementById('searchInput').value = address
+        document.getElementById('searchInput').value = address;
     }
 
     handleSubmit = (event) => {
