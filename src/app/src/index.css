@@ -1,0 +1,12 @@
+html, body, .maxheight {
+  min-height: 100% !important;
+  height: 100%;
+}
+
+.maxheight {
+  height: 90%;
+}
+
+#root {
+  height: 90%;
+}

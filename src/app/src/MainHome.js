@@ -1,35 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-// using this npm module for displaying results from Google Places API in dropdown
-import PlacesAutocomplete from 'react-places-autocomplete';
-
+import { FormControl, TextField, Grid } from '@material-ui/core';
+import PlacesInput from './PlacesInput';
+import MapContain from './MapContain';
 import './css/MainHome.css'
+import MenuAppBar from './MenuAppBar';
 
 require('dotenv').config();
 
 function MainHome() {
   const [address, setAddress] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const [addressList, setAddressList] = useState([]);
 
-  const handleChange = (address) => {
-    setAddress(address);
-    setErrorMessage("");
-  };
-
-  const handleSelect = (address) => {
-    handleChange(address);
-    handleTextFieldChange(address);
-  };
-
-  const handleTextFieldChange = (address) => {
-    document.getElementById('searchInput').value = address;
-  }
-
   const handleSubmit = (event) => {
-    const { address, addressList } = this.state;
-
+    console.log('in handle submit')
     event.preventDefault();
 
     if (!address) {
@@ -37,21 +21,11 @@ function MainHome() {
     }
 
     if (!addressList.includes(address)) {
-      const currAddList = addressList;
-      currAddList.push(address);
-      setAddressList(addressList);
-    } else {
-      setErrorMessage("Address already added");
+      let newState = [...addressList, address];
+      setAddressList(newState);
     }
 
     setAddress("");
-    handleTextFieldChange("");
-  }
-
-  const handleAddressDelete = (address) => {
-    const addressDeleteIndex = addressList.indexOf(address);
-
-    setAddressList(addressList.splice(addressDeleteIndex, 1));
   }
 
   const handleAddressLookup = async (event) => {
@@ -72,104 +46,67 @@ function MainHome() {
     }
   };
 
+  const handleDelete = (addy) => {
+    const currAddList = addressList;
+
+    setAddressList(currAddList.filter(item => item.description !== addy.description));
+  };
+
   return (
-    <div id="MainHomeContainer">
-      <PlacesAutocomplete
-        value={address}
-        onChange={handleChange}
-        onSelect={handleSelect}
-        className='autocomplete'
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div className="addAddressWrapper">
-            <div className='titleBar'>
-              <h2>Add an address/Look up a User</h2>
-            </div>
-            <br/>
-            <div className='searchBar'>
-              <div className='searchInput'>
-                <input 
-                  aria-label = "Recipient's username"
-                  aria-describedby = "basic-addon2"
-                  {...getInputProps({
-                    placeholder: '81 St Mary St, Toronto, ON, Canada',
-                    className: 'location-search-input form-control',
-                    id: 'searchInput',
-                    type: "text"
-                  })}
-                />
-              </div>
-              <div className='homeSearchButton'>
+    <div className="maxheight">
+      <MenuAppBar />
+      <div className="formcontainer-div">
+        <div className="sixtywidth">
+          <MapContain />
+        </div>
+        <div style={{ marginLeft: "20px" }}>
+          <div className="space-top">
+            <h2>Add an address/Look up a User</h2>
+          </div>
+          <br/>
+          <Grid container>
+            <FormControl>
+              <div className="formcontainer-div space-bottom">
+                <PlacesInput setAddress={setAddress} />
                 <button
                   disabled={!address}
-                  className="btn btn-primary btn-lg"
+                  className="btn btn-primary btn-lg space-left"
                   type="button"
-                  onClick={(event) => handleSubmit(event)}
-                >
-                  +
-                </button> 
+                  onClick={(e) => handleSubmit(e)}
+                >+</button>
               </div>
-              <br/>
-              <div className='displayMessage'>
-                {errorMessage}
-              </div>
-            </div>
-            <br/>
-            <div className='suggestions'>
-              {loading ? <div>...loading</div> : null}
-              {suggestions.map((suggestion) => {
-                return (
-                  <div
-                    onClick={() => handleSelect(suggestion.description)}
-                    onMouseOver={() => handleTextFieldChange(suggestion.description)} 
-                    className='suggestion' {...getSuggestionItemProps(suggestion)}
-                  >
-                    {suggestion.description}
+              <div>
+                {addressList.map((addy) => (
+                  <div className="displayflex">
+                    <TextField
+                      style={{ width: 500 }}
+                      value={addy.description}
+                      variant="outlined"
+                      disabled
+                    />
+                    <button
+                      className="btn btn-danger btn-lg space-left"
+                      type="button"
+                      onClick={() => handleDelete(addy)}
+                    >x</button>
                   </div>
-                )
-              })}
-            </div>
-            <CurrentAddressList
-              deleteAddress={(addressToDelete) => handleAddressDelete(addressToDelete)}
-              addressList={addressList}
-            />
-          </div>
-        )}
-      </PlacesAutocomplete>              
-      <div id="letsMeetDiv">
-        <button
-          disabled={(addressList.length <= 1)}
-          onClick={(event) => handleAddressLookup(event)}
-          class="btn btn-success btn-lg letsMeetButton"
-        >
-          Let's Meet!
-        </button>
+                ))}
+              </div>
+              <div className="full-width">
+                <button
+                  disabled={(addressList.length <= 1)}
+                  onClick={(event) => handleAddressLookup(event)}
+                  className="btn btn-primary btn-lg space-top full-width"
+                >
+                  Let's Meet!
+                </button>
+              </div>
+            </FormControl>
+          </Grid>
+        </div>
       </div>
     </div>
   );
-}
-
-function CurrentAddressList(props) {
-  if (props.addressList.length > 0) {
-    return props.addressList.map(address => {
-      return (
-        <div id="addressList">
-          <div className='addressPoint'>{address}</div>
-          <div
-            className="deleteAddress"
-          >
-            <button onClick={props.deleteAddress(address)} className="btn btn-danger">
-              Delete
-            </button>
-          </div>
-        </div>
-      )
-    })
-  } else {
-    return(
-      <div />
-    )
-  }
 }
 
 export default MainHome;
