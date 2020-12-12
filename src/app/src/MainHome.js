@@ -40,7 +40,7 @@ class MainHome extends React.Component{
                 let currAddList = addressList;
                 currAddList.push(address);
 
-                this.setState({addressList : currAddList}, () => {
+                this.setState({ addressList: currAddList }, () => {
                 this.setState({address : ""});
                 this.handleTextFieldChange("");
             });
