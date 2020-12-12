@@ -19,7 +19,7 @@ class MainHome extends React.Component{
     }
 
     handleChange = address => {
-        this.setState({ address : address, message : "" });
+        this.setState({ address : address, errorMessage : "" });
     };
 
     handleSelect = address => {
