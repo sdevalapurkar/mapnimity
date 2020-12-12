@@ -40,8 +40,17 @@ app.post('/api/locations', async (req, res) => {
   }));
 
   const midpoint = getMidpoint(latLngs);
-  const restaurants = await axios.get(`${placesApiBaseUrl}?location=${midpoint.latitude},${midpoint.longitude}&radius=1000&type=restaurant&key=${API_KEY}`);
-  res.send(restaurants.data.results);
+  let radius = 0;
+  let restaurantData = [];
+
+  while (restaurantData.length < 15) {
+    const restaurants = await axios.get(`${placesApiBaseUrl}?location=${midpoint.latitude},${midpoint.longitude}&radius=${radius}&type=restaurant&key=${API_KEY}`);
+
+    restaurantData = restaurants.data.results.slice();
+    radius += 200;
+  }
+
+  res.send(restaurantData);
 });
 
 console.log(`API server started on: ${port}`);
