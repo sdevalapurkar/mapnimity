@@ -3,8 +3,7 @@ import axios from 'axios';
 import { FormControl, TextField, Grid } from '@material-ui/core';
 import PlacesInput from './PlacesInput';
 import MapContain from './MapContain';
-import './css/MainHome.css'
-import MenuAppBar from './MenuAppBar';
+import './css/MainHome.css';
 
 require('dotenv').config();
 
@@ -13,6 +12,13 @@ function MainHome() {
   const [addressList, setAddressList] = useState([]);
   const [locations, setLocations] = useState([]);
   const [myAddresses, setMyAddresses] = useState([]);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    if (addressList.length >= 2) {
+      setIsButtonDisabled(false);
+    }
+  }, [addressList]);
 
   const storeLocations = (locationData) => {
     const locationFormattedData = [];
@@ -47,6 +53,8 @@ function MainHome() {
   }
 
   const handleAddressLookup = async (event) => {
+    setIsButtonDisabled(true);
+
     event.preventDefault();
 
     const fetchURL = `${process.env.REACT_APP_PORT}/api/locations`;
@@ -69,6 +77,8 @@ function MainHome() {
     } catch (err) {
       alert('Error submitting addresses');
     }
+
+    setIsButtonDisabled(false);
   };
 
   const handleDelete = (addy) => {
@@ -77,16 +87,20 @@ function MainHome() {
     setAddressList(currAddList.filter(item => item.description !== addy.description));
   };
 
+  const logo = `${process.env.PUBLIC_URL}/img/logo.png`;
+
   return (
     <div className="maxheight">
-      <MenuAppBar />
+      <div className="image-logo">
+        <img src={logo} height="80px" />
+      </div>
       <div className="formcontainer-div">
         <div className="sixtywidth">
           <MapContain myAddresses={myAddresses} locations={locations} />
         </div>
         <div style={{ marginLeft: "20px" }}>
           <div className="space-top centeralign">
-            <h2>Add an Address</h2>
+            <h2 style={{ color: '#0f5298' }}>Add an Address</h2>
           </div>
           <br/>
           <Grid container>
@@ -119,7 +133,7 @@ function MainHome() {
               </div>
               <div className="full-width">
                 <button
-                  disabled={(addressList.length <= 1)}
+                  disabled={isButtonDisabled}
                   onClick={(event) => handleAddressLookup(event)}
                   className="btn btn-primary btn-lg space-top full-width"
                 >
