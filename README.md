@@ -42,4 +42,4 @@ In order to make requests to our API easily, we have added a Postman collection.
 
 ## Planning, Scope & Architecture
 
-Prior to development, we planned out the basic application scope, architecture and design. The designs can be found [here](./documentation)
+Prior to development, we planned out the basic application scope, architecture and design. The designs can be found [here.](./documentation)
