@@ -1,0 +1,5 @@
+node_modules/
+package-lock.json
+README.md
+mapnificent_nginx_config_local.conf
+.eslintcache
