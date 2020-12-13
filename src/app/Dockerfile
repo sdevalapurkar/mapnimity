@@ -31,7 +31,7 @@ RUN env &&\
 FROM nginx:1.19
 
 # copying our nginx config
-COPY --from=build-stage /react-app/mapnificent_nginx_config_container.conf.template /etc/nginx/conf.d/default.conf
+COPY --from=build-stage /react-app/mapnificent_nginx_config_container.conf /etc/nginx/conf.d/default.conf
 
 # copying production build from last stage to serve through nginx
 COPY --from=build-stage /react-app/build/ /usr/share/nginx/html
