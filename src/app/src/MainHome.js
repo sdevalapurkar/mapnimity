@@ -39,10 +39,11 @@ function MainHome() {
       return;
     }
 
-    if (!addressList.includes(address)) {
-      let newState = [...addressList, address];
-      setAddressList(newState);
-    }
+
+    if (addressList.some(addressList => addressList.description === address.description)) 
+      return;
+    let newState = [...addressList, address];
+    setAddressList(newState);
 
     setAddress("");
   }
