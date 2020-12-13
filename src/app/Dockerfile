@@ -9,6 +9,18 @@ COPY ./package.json /react-app/
 # installing npm packages
 RUN npm install
 
+ARG REACT_APP_PORT
+
+ENV REACT_APP_PORT $REACT_APP_PORT
+
+ARG REACT_APP_PLACES_API_KEY
+
+ENV REACT_APP_PLACES_API_KEY $REACT_APP_PLACES_API_KEY
+
+ARG NGINX_PROXY_IP
+
+ENV NGINX_PROXY_IP $NGINX_PROXY_IP
+
 COPY ./ /react-app/
 
 # creating production build to serve through nginx

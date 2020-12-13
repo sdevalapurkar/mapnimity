@@ -10,9 +10,13 @@ COPY package.json ./
 # installing npm packages
 RUN npm install
 
-COPY ./ ./api/
+ARG API_KEY
 
-# exposing port 5000 on container
+ENV API_KEY $API_KEY
+
+COPY . /api/
+
+# exposing port 8000 on container
 EXPOSE 8000
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start:reload"]
