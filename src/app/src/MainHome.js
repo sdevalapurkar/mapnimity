@@ -22,7 +22,7 @@ function MainHome() {
 
       objectData.position = [l.geometry.location.lat, l.geometry.location.lng];
       objectData.name = l.name;
-      objectData.isOpen = l.opening_hours.open_now;
+      objectData.isOpen = l.opening_hours && l.opening_hours.open_now || false;
       objectData.priceLevel = l.price_level;
       objectData.rating = l.rating;
       objectData.vicinity = l.vicinity;
@@ -71,6 +71,7 @@ function MainHome() {
       setMyAddresses([ ...myAddresses, finalLatLngs ]);
     } catch (err) {
       alert('Error submitting addresses');
+      console.log(err);
     }
   };
 
