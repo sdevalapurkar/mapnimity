@@ -66,7 +66,6 @@ function MainHome() {
       setMyAddresses([ ...myAddresses, finalLatLngs ]);
     } catch (err) {
       alert('Error submitting addresses');
-      console.log(err);
     }
   };
 
