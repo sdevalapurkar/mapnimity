@@ -1,6 +1,7 @@
 # Mapnimity
 
 Mapnimity is an application for users to find restaurants in closest proximity to their friends! Enter as many addresses as you like and find the maptimal location!
+[Check out Mapnimity](http://www.mapnimity.com)
 
 ## Running Locally
 
@@ -31,7 +32,9 @@ REACT_APP_PLACES_API_KEY=<api_key_google>
 
 ### Testing
 
+1. From the `src/api/src` directory run `npm test`
 
+This will run the Jest test suite to enforce that our API endpoints are working correctly and serving up the correct data
 
 ### Postman Collection
 
