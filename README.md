@@ -39,3 +39,7 @@ This will run the Jest test suite to enforce that our API endpoints are working 
 ### Postman Collection
 
 In order to make requests to our API easily, we have added a Postman collection. Just import it into postman and make requests to our endpoints easily!
+
+## Planning, Scope & Architecture
+
+Prior to development, we planned out the basic application scope, architecture and design. The designs can be found [here](./documentation)
