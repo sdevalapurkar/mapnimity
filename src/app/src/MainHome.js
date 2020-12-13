@@ -22,6 +22,9 @@ function MainHome() {
       objectData.position = [l.geometry.location.lat, l.geometry.location.lng];
       objectData.name = l.name;
       objectData.isOpen = l.opening_hours.open_now;
+      objectData.priceLevel = l.price_level;
+      objectData.rating = l.rating;
+      objectData.vicinity = l.vicinity;
 
       locationFormattedData.push(objectData);
     });
@@ -91,7 +94,7 @@ function MainHome() {
               </div>
               <div>
                 {addressList.map((addy) => (
-                  <div className="displayflex">
+                  <div key={addy.description} className="displayflex">
                     <TextField
                       style={{ width: 500 }}
                       value={addy.description}

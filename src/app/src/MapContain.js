@@ -34,15 +34,23 @@ export default function MapContain(props) {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {properLocations.map(l => (
-            <Marker position={l.position}>
+            <Marker key={l.name} position={l.position}>
               <Popup>
-                {l.name}
+                <b>{l.name}</b>
+                <br />
+                {l.vicinity}
                 <br />
                 {l.isOpen && (
                   `Currently Open`
                 )}
                 {!l.isOpen && (
                   `Currently Closed`
+                )}
+                <br />
+                {`Rating: ${l.rating}`}
+                <br />
+                {l.priceLevel && (
+                  `Price Level: ${l.priceLevel}`
                 )}
               </Popup>
             </Marker>
