@@ -6,8 +6,8 @@ import Marker from 'react-leaflet-enhanced-marker';
 export default function MapContain(props) {
   const { locations, myAddresses } = props;
   const [position, setPosition] = useState([1.3, 103.5]);
-  const properLocations = locations[0];
-  const properMyAddresses = myAddresses[0];
+  const properLocations = locations[locations.length - 1];
+  const properMyAddresses = myAddresses[myAddresses.length - 1];
 
   useEffect(async () => {
     navigator.geolocation.getCurrentPosition(location => {

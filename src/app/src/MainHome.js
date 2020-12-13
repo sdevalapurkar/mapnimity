@@ -44,8 +44,6 @@ function MainHome() {
       let newState = [...addressList, address];
       setAddressList(newState);
     }
-
-    setAddress("");
   }
 
   const handleAddressLookup = async (event) => {
