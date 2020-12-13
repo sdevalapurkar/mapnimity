@@ -3,6 +3,8 @@
 Mapnimity is an application for users to find restaurants in closest proximity to their friends! Enter as many addresses as you like and find the maptimal location!
 [Check out Mapnimity here.](http://www.mapnimity.com)
 
+**Note:** Our domain is registered using GoDaddy :)
+
 ## Running Locally
 
 In order to run the application locally, follow the steps below after cloning the repo:
