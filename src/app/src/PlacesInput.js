@@ -112,7 +112,7 @@ export default function PlacesInput(props) {
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} label="Add a location" variant="outlined" fullWidth />
+        <TextField {...params} label="Enter an Address" placeholder="123 Address St, Victoria, BC" variant="outlined" fullWidth />
       )}
       renderOption={(option) => {
         const matches = option.structured_formatting.main_text_matched_substrings;
