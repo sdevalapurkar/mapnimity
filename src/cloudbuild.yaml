@@ -15,3 +15,4 @@ steps:
   args: ['compute', 'instances', 'update-container', 'app', '--zone=us-central1-a', '--container-image', 'gcr.io/mapnificent-hack/react-app:latest_react']
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['compute', 'instances', 'update-container', 'api', '--zone=us-central1-a', '--container-image', 'gcr.io/mapnificent-hack/api:latest_api']
+  
