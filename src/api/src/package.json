@@ -4,7 +4,8 @@
   "description": "backend api for application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-dev": "nodemon index.js",
+    "test": "jest --testTimeout=10000 --forceExit",
     "start:reload": "./node_modules/.bin/nodemon src/index.js"
   },
   "keywords": [
@@ -13,12 +14,20 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.6"
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.6",
+    "supertest": "^6.0.1"
   },
   "dependencies": {
     "axios": "^0.21.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "geolib": "^3.3.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
