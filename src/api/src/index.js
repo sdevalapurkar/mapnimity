@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 // listen on port
-app.listen(port);
+module.exports = app.listen(port);
 
 app.get('/api/test', async (req, res) => {
   res.send('test endpoint is live');
