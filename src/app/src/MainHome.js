@@ -12,6 +12,7 @@ function MainHome() {
   const [address, setAddress] = useState("");
   const [addressList, setAddressList] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [myAddresses, setMyAddresses] = useState([]);
 
   const storeLocations = (locationData) => {
     const locationFormattedData = [];
@@ -39,10 +40,11 @@ function MainHome() {
       return;
     }
 
-    if (!addressList.includes(address)) {
-      let newState = [...addressList, address];
-      setAddressList(newState);
-    }
+
+    if (addressList.some(addressList => addressList.description === address.description)) 
+      return;
+    let newState = [...addressList, address];
+    setAddressList(newState);
 
     setAddress("");
   }
@@ -58,6 +60,15 @@ function MainHome() {
       if (response.status === 200) {
         storeLocations(response.data);
       }
+
+      const latLngs = await axios.post(`${process.env.REACT_APP_PORT}/api/latlng`, { "locations": addressList });
+      const finalLatLngs = [];
+
+      latLngs.data.forEach(a => {
+        finalLatLngs.push([a.lat, a.lng]);
+      });
+
+      setMyAddresses([ ...myAddresses, finalLatLngs ]);
     } catch (err) {
       alert('Error submitting addresses');
     }
@@ -74,7 +85,7 @@ function MainHome() {
       <MenuAppBar />
       <div className="formcontainer-div">
         <div className="sixtywidth">
-          <MapContain locations={locations} />
+          <MapContain myAddresses={myAddresses} locations={locations} />
         </div>
         <div style={{ marginLeft: "20px" }}>
           <div className="space-top centeralign">

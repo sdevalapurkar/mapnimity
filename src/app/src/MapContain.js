@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map, TileLayer, Marker as Mark, Popup } from 'react-leaflet';
+import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
+import Marker from 'react-leaflet-enhanced-marker';
 
 export default function MapContain(props) {
-  const { locations } = props;
+  const { locations, myAddresses } = props;
   const [position, setPosition] = useState([1.3, 103.5]);
   const properLocations = locations[0];
+  const properMyAddresses = myAddresses[0];
 
-  useEffect(() => {
+  useEffect(async () => {
     navigator.geolocation.getCurrentPosition(location => {
       setPosition([location.coords.latitude, location.coords.longitude]);
-    })
+    });
   }, []);
 
   return (
@@ -20,11 +23,7 @@ export default function MapContain(props) {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={position}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
+          <Mark position={position} />
         </Map>
       )}
       {locations.length > 0 && (
@@ -34,7 +33,7 @@ export default function MapContain(props) {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {properLocations.map(l => (
-            <Marker key={l.name} position={l.position}>
+            <Mark position={l.position}>
               <Popup>
                 <b>{l.name}</b>
                 <br />
@@ -53,8 +52,15 @@ export default function MapContain(props) {
                   `Price Level: ${l.priceLevel}`
                 )}
               </Popup>
-            </Marker>
+            </Mark>
           ))}
+          {properMyAddresses && properMyAddresses.length > 0 && (
+            <>
+              {properMyAddresses.map(ma => (
+                <Marker icon={<PersonPinCircleIcon fontSize="large" />} position={ma} />
+              ))}
+            </>
+          )}
         </Map>
       )}
     </>

@@ -24,23 +24,21 @@ app.use(express.json());
 // listen on port
 app.listen(port);
 
-app.get('/api/test', (req, res) => {
+app.get('/api/test', async (req, res) => {
   res.send('test endpoint is live');
+});
+
+app.post('/api/latlng', async (req, res) => {
+  const { locations } = req.body;  
+  const latLngs = await getLatLngsForAddresses(locations);
+
+  res.send(latLngs);
 });
 
 app.post('/api/locations', async (req, res) => {
   const { locations } = req.body;
-  const latLngs = [];
-
-  await Promise.all(locations.map(async location => {
-    const result = await axios.get(`${geoCodeApiBaseUrl}?address=${location.description}&key=${API_KEY}`);
-    const { data: { results } } = result;
-
-    latLngs.push(results[0].geometry.location);
-  }));
-
+  const latLngs = await getLatLngsForAddresses(locations);
   const midpoint = getMidpoint(latLngs);
-
   let radius = 0;
   let restaurantData = [];
 
@@ -55,3 +53,17 @@ app.post('/api/locations', async (req, res) => {
 });
 
 console.log(`API server started on: ${port}`);
+
+const getLatLngsForAddresses = async (locations) => {
+  const latLngs = [];
+
+  await Promise.all(locations.map(async location => {
+    const loc = location.description ? location.description : location;
+    const result = await axios.get(`${geoCodeApiBaseUrl}?address=${loc}&key=${API_KEY}`);
+    const { data: { results } } = result;
+
+    latLngs.push(results[0].geometry.location);
+  }));
+
+  return latLngs;
+};
