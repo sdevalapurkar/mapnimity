@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "62f0898e-ef50-4105-9e3d-fc63e953ee08",
+		"name": "mapnimity-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/api/locations",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"locations\": [\"235 Island Hwy, Victoria, BC\", \"267 A Tolcross Ave, Victoria, BC\", \"2455 Azurite Crescent, Victoria\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/locations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"locations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/latlng",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"locations\": [\"235 Island Hwy, Victoria, BC\", \"267 A Tolcross Ave, Victoria, BC\", \"2455 Azurite Crescent, Victoria\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/latlng",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"latlng"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
