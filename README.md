@@ -43,3 +43,9 @@ In order to make requests to our API easily, we have added a Postman collection.
 ## Planning, Scope & Architecture
 
 Prior to development, we planned out the basic application scope, architecture and design. The designs can be found [here.](./documentation)
+
+## Deployment
+
+Our application server and our react web server were both containerized using Docker. We established a Continuous Deployment strategy using Google Cloud builds with cloud build triggers deploying to separate Compute Engine VM Instances. The web server is served using Nginx and communicates with the application server using a reverse proxy.
+
+For more reference, [refer to this article.](https://mickeyabhi1999.medium.com/using-nginx-reverse-proxy-to-set-cross-site-cookies-for-your-web-app-7c9e5e502091)
