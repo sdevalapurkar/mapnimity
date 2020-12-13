@@ -1,0 +1,13 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/mapnificent-hack/react-app:latest_react', '--build-arg', 'REACT_APP_PORT=${REACT_APP_PORT}', '--build-arg', 'REACT_APP_PLACES_API_KEY=${REACT_APP_PLACES_API_KEY}', '--build-arg', 'NGINX_PROXY_IP=${NGINX_PROXY_IP}', './app']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/mapnificent-hack/api:latest_api', '--build-arg', 'API_KEY=${REACT_APP_PLACES_API_KEY}', './api/src']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/mapnificent-hack/react-app:latest_react']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/mapnificent-hack/api:latest_api']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['compute', 'instances', 'update-container', 'app', '--zone=us-central1-a', '--container-image', 'gcr.io/mapnificent-hack/react-app:latest_react']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['compute', 'instances', 'update-container', 'api', '--zone=us-central1-a', '--container-image', 'gcr.io/mapnificent-hack/api:latest_api']
