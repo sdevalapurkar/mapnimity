@@ -36,14 +36,12 @@ function MainHome() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!address) {
+    if (!address || addressList.some(addressList => addressList.description === address.description)) {
       return;
     }
 
-    if (!addressList.includes(address)) {
-      let newState = [...addressList, address];
-      setAddressList(newState);
-    }
+    let newState = [...addressList, address];
+    setAddressList(newState);
   }
 
   const handleAddressLookup = async (event) => {
